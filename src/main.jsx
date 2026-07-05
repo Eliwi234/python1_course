@@ -32,6 +32,7 @@ const sessions = [
     title: "المتغيرات وأنواع البيانات",
     summary:
       "فهم المتغيرات، الأرقام، النصوص، القيم المنطقية، وكيفية تخزين المعلومات داخل البرنامج.",
+    materialHref: "/materials/2.pdf",
   },
   {
     id: 3,
@@ -58,6 +59,7 @@ const sessions = [
     title: "جمل التحكم الشرطية",
     summary:
       "بناء قرارات داخل الكود باستخدام if و elif و else وربط الشروط بسيناريوهات عملية.",
+    materialHref: "/materials/5.pdf",
   },
   {
     id: 6,
@@ -66,6 +68,7 @@ const sessions = [
     title: "جمل التكرار (Loops)",
     summary:
       "تنفيذ أوامر متكررة باستخدام for و while مع أمثلة على العد، البحث، ومعالجة القوائم.",
+    materialHref: "/materials/6.pdf",
   },
   {
     id: 7,
