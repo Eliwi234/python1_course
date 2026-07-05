@@ -7,7 +7,6 @@ import {
   CheckCircle2,
   Clock3,
   Code2,
-  FileArchive,
   FileText,
   GraduationCap,
   LockKeyhole,
@@ -24,6 +23,7 @@ const sessions = [
     title: "مقدمة في بايثون وبيئة العمل",
     summary:
       "تعرف على لغة بايثون، لماذا نستخدمها، تثبيت الأدوات، وتشغيل أول برنامج بطريقة بسيطة.",
+    materialHref: "/materials/1.pdf",
   },
   {
     id: 2,
@@ -343,27 +343,41 @@ function SessionCard({ session, index }) {
           <span className="font-extrabold text-white">ملفات الدرس</span>
           <ArrowDownToLine className="h-5 w-5 text-neon-blue" />
         </div>
-        <div className="grid grid-cols-2 gap-2">
-          <DownloadButton href="#" icon={<FileText className="h-4 w-4" />} label="PDF" />
-          <DownloadButton href="#" icon={<FileArchive className="h-4 w-4" />} label="Zip" />
-        </div>
+        <DownloadButton href={session.materialHref} icon={<FileText className="h-4 w-4" />} label="PDF" />
       </div>
 
-      <a
-        href="#"
-        className="mt-3 inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-white px-4 text-sm font-black text-black transition hover:bg-neon-blue"
-      >
-        تحميل المادة العلمية
-        <ArrowDownToLine className="h-4 w-4" />
-      </a>
+      {session.materialHref ? (
+        <a
+          href={session.materialHref}
+          download
+          className="mt-3 inline-flex min-h-11 items-center justify-center gap-2 rounded-2xl bg-white px-4 text-sm font-black text-black transition hover:bg-neon-blue"
+        >
+          تحميل المادة العلمية
+          <ArrowDownToLine className="h-4 w-4" />
+        </a>
+      ) : (
+        <span className="mt-3 inline-flex min-h-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 px-4 text-sm font-black text-slate-400">
+          قريباً
+        </span>
+      )}
     </motion.article>
   );
 }
 
 function DownloadButton({ href, icon, label }) {
+  if (!href) {
+    return (
+      <span className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 text-sm font-bold text-slate-500">
+        {icon}
+        {label}
+      </span>
+    );
+  }
+
   return (
     <a
       href={href}
+      download
       className="inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/10 px-3 text-sm font-bold text-white transition hover:border-neon-blue hover:text-neon-blue"
     >
       {icon}
