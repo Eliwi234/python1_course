@@ -31,3 +31,226 @@ input {
   background: rgba(0, 212, 255, 0.35);
   color: #fff;
 }
+
+.certificate-confetti {
+  position: absolute;
+  width: 10px;
+  height: 18px;
+  border-radius: 3px;
+  opacity: 0.9;
+  transform: rotate(18deg);
+  animation: certificate-float 3.8s ease-in-out infinite;
+}
+
+.certificate-card {
+  position: relative;
+  min-height: 360px;
+  border-radius: 28px;
+  padding: 24px;
+  overflow: hidden;
+  border: 6px solid rgba(2, 132, 199, 0.25);
+  background:
+    linear-gradient(135deg, #f8fbff 0%, #e0f2fe 52%, #ecfeff 100%),
+    linear-gradient(90deg, rgba(2, 6, 23, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(2, 6, 23, 0.05) 1px, transparent 1px);
+  background-size: auto, 26px 26px, 26px 26px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  color: #020617;
+}
+
+.certificate-card::before,
+.certificate-card::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.certificate-card::before {
+  border: 2px dashed rgba(14, 165, 233, 0.45);
+  background:
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.16), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(34, 197, 94, 0.14), transparent 24%);
+}
+
+.certificate-card::after {
+  inset: auto 20px 20px auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(2, 132, 199, 0.32) 0 32%, transparent 33%),
+    conic-gradient(from 20deg, #0ea5e9, #22c55e, #f59e0b, #ec4899, #0ea5e9);
+  opacity: 0.88;
+}
+
+.certificate-card-ready {
+  animation: certificate-pop 0.8s ease-out both;
+}
+
+.certificate-card-locked {
+  filter: saturate(0.72) contrast(0.95);
+}
+
+.kid-friendly-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.kid-friendly-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 212, 255, 0.12), rgba(255, 255, 255, 0.04), rgba(250, 204, 21, 0.14));
+  z-index: 0;
+  pointer-events: none;
+}
+
+.kid-friendly-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.kid-friendly-emoji {
+  animation: kid-bounce 1.7s ease-in-out infinite;
+}
+
+.quest-card {
+  animation: quest-pulse 3s ease-in-out infinite;
+}
+
+.quest-emoji {
+  animation: quest-bounce 1.6s ease-in-out infinite;
+}
+
+.magic-button {
+  animation: magic-pop 1.2s ease-in-out infinite;
+}
+
+.ending-reward {
+  animation: ending-glow 3s ease-in-out infinite;
+}
+
+.ending-star {
+  animation: star-float 2.2s ease-in-out infinite;
+}
+
+@keyframes certificate-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(18deg);
+  }
+
+  50% {
+    transform: translateY(-16px) rotate(-10deg);
+  }
+}
+
+@keyframes certificate-pop {
+  0% {
+    transform: scale(0.94) rotate(-2deg);
+  }
+
+  55% {
+    transform: scale(1.02) rotate(1deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes kid-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+
+@keyframes quest-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(192, 132, 252, 0.16);
+  }
+
+  50% {
+    box-shadow: 0 0 24px rgba(192, 132, 252, 0.22);
+  }
+}
+
+@keyframes quest-bounce {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-5px) rotate(6deg);
+  }
+}
+
+@keyframes magic-pop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+@keyframes ending-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(34, 211, 238, 0.12);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.2);
+  }
+}
+
+@keyframes star-float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translateY(-10px) scale(1.2);
+    opacity: 1;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .certificate-card,
+  .certificate-card * {
+    visibility: visible;
+  }
+
+  .certificate-card {
+    position: fixed;
+    inset: 24px;
+    min-height: auto;
+    box-shadow: none;
+  }
+
+  .certificate-card button {
+    display: none;
+  }
+}

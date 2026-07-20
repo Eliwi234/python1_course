@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { motion } from "framer-motion";
 import {
   ArrowDownToLine,
+  Award,
   CalendarDays,
   CheckCircle2,
   Clock3,
@@ -10,6 +11,7 @@ import {
   FileText,
   GraduationCap,
   LockKeyhole,
+  Printer,
   Sparkles,
   UserRound,
 } from "lucide-react";
@@ -20,54 +22,54 @@ const sessions = [
     id: 1,
     date: "2026-07-02",
     day: "الخميس",
-    title: "مقدمة في بايثون وبيئة العمل",
+    title: "مرحباً بك في عالم البرمجة",
     summary:
-      "تعرف على لغة بايثون، لماذا نستخدمها، تثبيت الأدوات، وتشغيل أول برنامج بطريقة بسيطة.",
+      "رحلتنا الأولى مع بايثون: ما هي البرمجة، ما هي بايثون، وكيف نجعل الكمبيوتر يطبع أول رسالة باستخدام print().",
     materialHref: "/materials/1.pdf",
   },
   {
     id: 2,
     date: "2026-07-05",
     day: "الأحد",
-    title: "المتغيرات وأنواع البيانات",
+    title: "صناديق الكنوز: المتغيرات",
     summary:
-      "فهم المتغيرات، الأرقام، النصوص، القيم المنطقية، وكيفية تخزين المعلومات داخل البرنامج.",
+      "فهم المتغيرات كصناديق نحفظ فيها الأسماء والأرقام والمعلومات، مع قواعد التسمية واستخدام print() لعرض المحتوى.",
     materialHref: "/materials/2.pdf",
   },
   {
     id: 3,
     date: "2026-07-07",
     day: "الثلاثاء",
-    title: "العمليات الحسابية والمنطقية",
+    title: "أنواع الكنوز: أرقام ونصوص",
     summary:
-      "استخدام العمليات الرياضية، المقارنات، والمنطق لبناء تعبيرات تساعد البرنامج على اتخاذ معنى واضح.",
+      "التعرف على أنواع البيانات الأساسية في بايثون مثل النصوص، الأرقام الصحيحة، والأرقام العشرية، واستخدام type() لاكتشاف النوع.",
     materialHref: "/materials/3.pdf",
   },
   {
     id: 4,
     date: "2026-07-09",
     day: "الخميس",
-    title: "التعامل مع النصوص (Strings)",
+    title: "الآلة الحاسبة الذكية",
     summary:
-      "تقطيع النصوص، دمجها، تنسيقها، واستخدام أهم الدوال التي تجعل التعامل مع الجمل أسهل.",
+      "استخدام بايثون كآلة حاسبة ذكية للتعامل مع الجمع والطرح والضرب والقسمة وبناء تعبيرات رياضية بسيطة.",
     materialHref: "/materials/4.pdf",
   },
   {
     id: 5,
     date: "2026-07-12",
     day: "الأحد",
-    title: "جمل التحكم الشرطية",
+    title: "لعبة الكلمات: Strings",
     summary:
-      "بناء قرارات داخل الكود باستخدام if و elif و else وربط الشروط بسيناريوهات عملية.",
+      "التعامل مع النصوص في بايثون: كتابة الكلمات، دمج الجمل، واستخدام أدوات بسيطة تجعل النصوص أكثر متعة ووضوحاً.",
     materialHref: "/materials/5.pdf",
   },
   {
     id: 6,
     date: "2026-07-14",
     day: "الثلاثاء",
-    title: "جمل التكرار (Loops)",
+    title: "كيف يقرر الكمبيوتر؟ If-Else",
     summary:
-      "تنفيذ أوامر متكررة باستخدام for و while مع أمثلة على العد، البحث، ومعالجة القوائم.",
+      "تعلم كيف يتخذ الكمبيوتر قرارات باستخدام if و else، وربط الشروط بأمثلة سهلة من الحياة اليومية.",
     materialHref: "/materials/6.pdf",
   },
   {
@@ -118,12 +120,75 @@ const sessions = [
     summary:
       "مراجعة شاملة للمستوى الأول، اختبار قصير، وخريطة واضحة للانتقال إلى المرحلة التالية.",
   },
+  {
+    id: 13,
+    date: "2026-07-30",
+    day: "الخميس",
+    title: "جلسة إضافية",
+    summary: "سيتم تحديث محتوى هذه الجلسة بعد إرسال المفاهيم الجديدة.",
+  },
+];
+
+const certificateConfetti = [
+  { left: "6%", top: "18%", color: "#00d4ff", delay: "0s" },
+  { left: "14%", top: "62%", color: "#facc15", delay: "0.3s" },
+  { left: "22%", top: "32%", color: "#fb7185", delay: "0.8s" },
+  { left: "34%", top: "76%", color: "#34d399", delay: "0.15s" },
+  { left: "48%", top: "16%", color: "#ffffff", delay: "0.55s" },
+  { left: "62%", top: "68%", color: "#facc15", delay: "0.95s" },
+  { left: "76%", top: "24%", color: "#00d4ff", delay: "0.45s" },
+  { left: "88%", top: "58%", color: "#fb7185", delay: "0.7s" },
+  { left: "94%", top: "34%", color: "#34d399", delay: "0.2s" },
 ];
 
 const specialGreetings = {
   "منار الشتار": "أهلاً بكِ يا منار في رحلتكِ لتعلم بايثون",
   "ليا ابو نبوت": "أهلاً بكِ يا ليا في رحلتكِ لتعلم بايثون",
 };
+
+const kidFriendlyTips = [
+  {
+    emoji: "✨",
+    title: "سحر صغير",
+    text: "print() يجعل الكمبيوتر يكتب لك رسالة جميلة على الشاشة!",
+  },
+  {
+    emoji: "🧠",
+    title: "لعبة الذكاء",
+    text: "المتغيرات مثل صناديق صغيرة تحفظ أشياءك المفضلة.",
+  },
+  {
+    emoji: "🎈",
+    title: "مغامرة جديدة",
+    text: "كل جلسة جديدة تشبه فتح صندوق كنز مليء بالأفكار!",
+  },
+  {
+    emoji: "🚀",
+    title: "قفزة ممتعة",
+    text: "إذا أردت التكرار، for loop مثل رحلة قصيرة جدًا مع خطوات متتالية.",
+  },
+];
+
+const questChallenges = [
+  {
+    title: "مهمة البرمجة الأولى",
+    prompt: "اكتب السطر الذي يجعل الكمبيوتر يقول مرحبا",
+    answer: "print(\"مرحبا\")",
+    hint: "استخدم print() مع نصوص",
+  },
+  {
+    title: "مهمة المتغيرات",
+    prompt: "ما اسم الصندوق الذي يحتفظ بالرقم 7؟",
+    answer: "x = 7",
+    hint: "فكر في اسم مختصر",
+  },
+  {
+    title: "مهمة القرار",
+    prompt: "كيف تجعل الكمبيوتر يختار بين نعم ولا؟",
+    answer: "if / else",
+    hint: "هذا المفهوم يقرر بين خيارين",
+  },
+];
 
 const monthNames = new Intl.DateTimeFormat("ar-SY", {
   month: "long",
@@ -149,9 +214,15 @@ function calculateProgress() {
 function App() {
   const [studentName, setStudentName] = useState("");
   const [enteredName, setEnteredName] = useState("");
+  const [funTipIndex, setFunTipIndex] = useState(0);
+  const [questIndex, setQuestIndex] = useState(0);
+  const [questInput, setQuestInput] = useState("");
+  const [questStatus, setQuestStatus] = useState("idle");
+  const [tapFeedback, setTapFeedback] = useState("✨ اضغط هنا!");
 
   const progress = useMemo(() => calculateProgress(), []);
   const completedSessions = Math.round((progress / 100) * sessions.length);
+  const isCourseComplete = completedSessions >= sessions.length;
   const normalizedName = normalizeArabicName(enteredName);
   const greeting =
     specialGreetings[normalizedName] ||
@@ -165,10 +236,110 @@ function App() {
     }
   }
 
+  function handlePrintCertificate() {
+    window.print();
+  }
+
+  function handleNextFunTip() {
+    setFunTipIndex((current) => (current + 1) % kidFriendlyTips.length);
+  }
+
+  function handleQuestSubmit(event) {
+    event.preventDefault();
+    const currentQuest = questChallenges[questIndex];
+    if (questInput.trim() === currentQuest.answer) {
+      setQuestStatus("success");
+      setQuestIndex((current) => (current + 1) % questChallenges.length);
+      setQuestInput("");
+    } else {
+      setQuestStatus("error");
+    }
+  }
+
+  function handleNextQuest() {
+    setQuestIndex((current) => (current + 1) % questChallenges.length);
+    setQuestInput("");
+    setQuestStatus("idle");
+  }
+
+  function handleTapFeedback() {
+    const reactions = [
+      "🌈 رائع!",
+      "✨ أنت فعلًا ضغطت!",
+      "💫 هذا سحر بايثون!",
+      "🎉 ممتاز، استمر!",
+    ];
+    setTapFeedback(reactions[Math.floor(Math.random() * reactions.length)]);
+  }
+
   if (!enteredName) {
     return (
       <main className="min-h-screen overflow-hidden bg-black text-white">
         <BackgroundGrid />
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="quest-card mb-6 overflow-hidden rounded-[1.75rem] border border-fuchsia-400/30 bg-gradient-to-br from-slate-950 via-purple-950/80 to-cyan-950/70 p-5 shadow-2xl"
+        >
+          <button
+            type="button"
+            onClick={handleTapFeedback}
+            className="magic-button mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-black text-cyan-200"
+          >
+            <span className="text-lg">🪄</span>
+            {tapFeedback}
+          </button>
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <div className="flex items-start gap-3">
+              <div className="quest-emoji flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-2xl">
+                🐍
+              </div>
+              <div>
+                <p className="text-sm font-black uppercase tracking-[0.3em] text-cyan-300">
+                  Python Adventure
+                </p>
+                <h2 className="mt-2 text-xl font-black text-white">
+                  {questChallenges[questIndex].title}
+                </h2>
+                <p className="mt-2 text-sm leading-7 text-slate-300">
+                  {questChallenges[questIndex].prompt}
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={handleNextQuest}
+              className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/10 px-3 py-2 text-sm font-bold text-slate-200"
+            >
+              مهمة أخرى
+            </button>
+          </div>
+
+          <form onSubmit={handleQuestSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <input
+              value={questInput}
+              onChange={(event) => setQuestInput(event.target.value)}
+              placeholder="اكتب إجابتك هنا"
+              className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-black/50 px-4 text-white outline-none placeholder:text-slate-500"
+            />
+            <button
+              type="submit"
+              className="min-h-12 rounded-2xl bg-fuchsia-400 px-4 font-black text-slate-950"
+            >
+              أرسل
+            </button>
+          </form>
+
+          <div className="mt-3 text-sm text-slate-300">
+            {questStatus === "success" && (
+              <p className="text-emerald-300">🌈 ممتاز! لقد أنقذت المهمة وساعدت البايثون على الوميض في الشاشة.</p>
+            )}
+            {questStatus === "error" && (
+              <p className="text-rose-300">💫 جرّب مرة أخرى، والخيط السحري يقول: {questChallenges[questIndex].hint}</p>
+            )}
+            {questStatus === "idle" && <p>✨ {questChallenges[questIndex].hint}</p>}
+          </div>
+        </motion.div>
         <section className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-5 py-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -197,6 +368,7 @@ function App() {
                   أدخلي أو أدخل الاسم للانتقال إلى لوحة المنهج، الجلسات، الملفات،
                   ونسبة التقدم في الكورس.
                 </p>
+                <KidFriendlyPanel funTipIndex={funTipIndex} onNextTip={handleNextFunTip} />
               </div>
 
               <motion.form
@@ -218,7 +390,7 @@ function App() {
                     type="text"
                     value={studentName}
                     onChange={(event) => setStudentName(event.target.value)}
-                    placeholder="مثال: منار الشتار"
+                    placeholder="مثال: منار الشتار او ليا ابو نبوت"
                     className="min-h-14 flex-1 rounded-2xl border border-white/10 bg-black/55 px-5 text-base text-white outline-none transition placeholder:text-slate-500 focus:border-neon-blue focus:shadow-neon-sm"
                     autoFocus
                   />
@@ -241,15 +413,131 @@ function App() {
   return (
     <main className="min-h-screen bg-black text-white">
       <BackgroundGrid />
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="quest-card mx-auto mb-6 max-w-3xl overflow-hidden rounded-[1.75rem] border border-fuchsia-400/30 bg-gradient-to-br from-slate-950 via-purple-950/80 to-cyan-950/70 p-5 shadow-2xl"
+      >
+        <button
+          type="button"
+          onClick={handleTapFeedback}
+          className="magic-button mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-400/10 px-4 py-2 text-sm font-black text-cyan-200"
+        >
+          <span className="text-lg">🪄</span>
+          {tapFeedback}
+        </button>
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <p className="text-sm font-black uppercase tracking-[0.3em] text-emerald-300">
+              Code Quest
+            </p>
+            <h2 className="mt-2 text-xl font-black text-white">
+              {questChallenges[questIndex].title}
+            </h2>
+            <p className="mt-2 text-sm leading-7 text-slate-300">
+              {questChallenges[questIndex].prompt}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={handleNextQuest}
+            className="inline-flex items-center justify-center rounded-full border border-slate-700 bg-white/10 px-3 py-2 text-sm font-bold text-slate-200"
+          >
+            مهمة أخرى
+          </button>
+        </div>
+
+        <form onSubmit={handleQuestSubmit} className="mt-4 flex flex-col gap-3 sm:flex-row">
+          <input
+            value={questInput}
+            onChange={(event) => setQuestInput(event.target.value)}
+            placeholder="اكتب إجابتك هنا"
+            className="min-h-12 flex-1 rounded-2xl border border-white/10 bg-black/50 px-4 text-white outline-none placeholder:text-slate-500"
+          />
+          <button
+            type="submit"
+            className="min-h-12 rounded-2xl bg-emerald-400 px-4 font-black text-slate-950"
+          >
+            تحقق
+          </button>
+        </form>
+
+        <div className="mt-3 text-sm text-slate-300">
+          {questStatus === "success" && (
+            <p className="text-emerald-300">✅ ممتاز! هذه إجابة صحيحة، وها قد بدأت تشعر وكأنك مبرمج حقيقي.</p>
+          )}
+          {questStatus === "error" && (
+            <p className="text-rose-300">⚠️ جرّب مرة أخرى،Hint: {questChallenges[questIndex].hint}</p>
+          )}
+          {questStatus === "idle" && <p>💡 {questChallenges[questIndex].hint}</p>}
+        </div>
+      </motion.div>
       <section className="relative mx-auto max-w-7xl px-5 py-8 sm:px-8 lg:py-10">
-        <Header greeting={greeting} progress={progress} completedSessions={completedSessions} />
+        <Header
+          greeting={greeting}
+          progress={progress}
+          completedSessions={completedSessions}
+          totalSessions={sessions.length}
+        />
+        <KidFriendlyPanel funTipIndex={funTipIndex} onNextTip={handleNextFunTip} />
         <SessionGrid />
+        <CertificateStage
+          isUnlocked={isCourseComplete}
+          studentName={normalizedName}
+          totalSessions={sessions.length}
+          onPrint={handlePrintCertificate}
+        />
+        <EndingReward />
       </section>
     </main>
   );
 }
 
-function Header({ greeting, progress, completedSessions }) {
+function KidFriendlyPanel({ funTipIndex, onNextTip }) {
+  const tip = kidFriendlyTips[funTipIndex];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55 }}
+      className="kid-friendly-panel mb-8 rounded-[2rem] border border-white/10 bg-white/[0.055] p-5 shadow-neon backdrop-blur-xl sm:p-6"
+    >
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-2xl">
+          <div className="inline-flex items-center gap-2 rounded-full border border-amber-300/35 bg-amber-300/10 px-3 py-2 text-sm font-bold text-amber-200">
+            <Sparkles className="h-4 w-4" />
+            لعبة صغيرة مع بايثون
+          </div>
+          <p className="mt-3 text-base leading-8 text-slate-300">
+            هذا الجزء يجعل الصفحة أكثر حيوية للأطفال، مع فكرة لطيفة واحدة تتغير كل مرة.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={onNextTip}
+          className="inline-flex items-center justify-center gap-2 rounded-2xl border border-neon-blue/30 bg-neon-blue/10 px-4 py-2 text-sm font-black text-neon-soft transition hover:bg-neon-blue/20"
+        >
+          <Sparkles className="h-4 w-4" />
+          فكرة جديدة
+        </button>
+      </div>
+
+      <div className="mt-4 flex flex-col gap-3 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-4 sm:flex-row sm:items-start">
+        <div className="kid-friendly-emoji flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/10 text-2xl">
+          {tip.emoji}
+        </div>
+        <div>
+          <p className="text-sm font-black text-white">{tip.title}</p>
+          <p className="mt-1 text-sm leading-7 text-slate-300">{tip.text}</p>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function Header({ greeting, progress, completedSessions, totalSessions }) {
   return (
     <motion.header
       initial={{ opacity: 0, y: 18 }}
@@ -265,7 +553,7 @@ function Header({ greeting, progress, completedSessions }) {
           </div>
           <h1 className="text-3xl font-black leading-tight sm:text-5xl">{greeting}</h1>
           <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
-            12 جلسة عملية مرتبة زمنياً، الساعة 7:00 مساءً بتوقيت سوريا، مع ملفات
+            {totalSessions} جلسة عملية مرتبة زمنياً، الساعة 7:00 مساءً بتوقيت سوريا، مع ملفات
             للتحميل ومراجعات تطبيقية.
           </p>
         </div>
@@ -284,7 +572,7 @@ function Header({ greeting, progress, completedSessions }) {
             />
           </div>
           <p className="mt-3 text-sm text-slate-300">
-            مكتمل حتى الآن: {completedSessions} من 12 جلسة حسب تاريخ اليوم.
+            مكتمل حتى الآن: {completedSessions} من {totalSessions} جلسة حسب تاريخ اليوم.
           </p>
         </div>
       </div>
@@ -299,6 +587,144 @@ function SessionGrid() {
         <SessionCard key={session.id} session={session} index={index} />
       ))}
     </section>
+  );
+}
+
+function EndingReward() {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.6 }}
+      className="ending-reward relative mt-8 overflow-hidden rounded-[2rem] border border-cyan-400/30 bg-gradient-to-br from-slate-950 via-cyan-950/70 to-fuchsia-950/70 p-6 shadow-2xl sm:p-8"
+    >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <span className="ending-star absolute left-[10%] top-[20%] h-3 w-3 rounded-full bg-cyan-300" />
+        <span className="ending-star absolute left-[80%] top-[30%] h-2.5 w-2.5 rounded-full bg-fuchsia-300" />
+        <span className="ending-star absolute left-[20%] bottom-[20%] h-2 w-2 rounded-full bg-amber-300" />
+        <span className="ending-star absolute right-[15%] bottom-[15%] h-3 w-3 rounded-full bg-emerald-300" />
+      </div>
+
+      <div className="relative flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+        <div className="max-w-2xl">
+          <p className="text-sm font-black uppercase tracking-[0.3em] text-cyan-200">Mission Complete</p>
+          <h3 className="mt-2 text-3xl font-black text-white sm:text-4xl">أنت قريب من أن تصبح مبرمجًا صغيرًا!</h3>
+          <p className="mt-3 text-base leading-8 text-slate-300">
+            كل جلسة جديدة تعني خطوة جديدة في عالم البرمجة، وكل فكرة صغيرة تجعل البايثون أكثر سحرًا.
+          </p>
+        </div>
+
+        <div className="rounded-[1.5rem] border border-white/10 bg-black/35 p-4 text-center backdrop-blur">
+          <div className="text-4xl">🎉</div>
+          <p className="mt-2 text-sm font-black text-cyan-200">مكافأة صغيرة</p>
+          <p className="mt-1 text-sm text-slate-300">اكتشف، جرّب، وابدأ كتابة أول سطر برمجي اليوم.</p>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+function CertificateStage({ isUnlocked, studentName, totalSessions, onPrint }) {
+  const displayName = studentName || "نجم بايثون";
+  const remainingSessions = Math.max(totalSessions - sessions.filter((session) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today >= getSessionDate(session.date);
+  }).length, 0);
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.25, duration: 0.65 }}
+      className="relative mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] p-5 shadow-neon backdrop-blur-xl sm:p-7 lg:p-8"
+    >
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {certificateConfetti.map((piece, index) => (
+          <span
+            key={index}
+            className="certificate-confetti"
+            style={{
+              left: piece.left,
+              top: piece.top,
+              backgroundColor: piece.color,
+              animationDelay: piece.delay,
+            }}
+          />
+        ))}
+      </div>
+
+      <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div>
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-300/35 bg-amber-300/10 px-4 py-2 text-sm font-bold text-amber-200">
+            {isUnlocked ? <Award className="h-4 w-4" /> : <LockKeyhole className="h-4 w-4" />}
+            شهادة نهاية الكورس
+          </div>
+          <h2 className="text-3xl font-black leading-tight text-white sm:text-4xl">
+            {isUnlocked ? "مبروك! الشهادة جاهزة" : "الشهادة تنتظرك في النهاية"}
+          </h2>
+          <p className="mt-4 max-w-2xl text-base leading-8 text-slate-300">
+            {isUnlocked
+              ? "بعد إنهاء كل الجلسات، تظهر الشهادة كهدية صغيرة تشجع الطالب على الاحتفال بإنجازه."
+              : `أكمل الجلسات المتبقية وستظهر الشهادة هنا. المتبقي: ${remainingSessions} جلسة.`}
+          </p>
+        </div>
+
+        <motion.div
+          key={isUnlocked ? "certificate-ready" : "certificate-locked"}
+          initial={{ opacity: 0, scale: 0.92, rotate: isUnlocked ? -2 : 0 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ type: "spring", stiffness: 150, damping: 16 }}
+          className={`certificate-card ${isUnlocked ? "certificate-card-ready" : "certificate-card-locked"}`}
+        >
+          <div className="flex items-center justify-between gap-3">
+            <span className="rounded-full border border-sky-400/40 bg-slate-950/90 px-3 py-1 text-[11px] font-black tracking-[0.3em] text-sky-200">
+              PYTHON LEVEL 1
+            </span>
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-sky-300 shadow-lg ring-1 ring-white/20">
+              {isUnlocked ? <Code2 className="h-6 w-6" /> : <LockKeyhole className="h-6 w-6" />}
+            </div>
+          </div>
+
+          <div className="mt-4 rounded-2xl border border-slate-300/70 bg-slate-950/95 p-3 text-right shadow-inner">
+            <p className="text-[11px] font-black uppercase tracking-[0.28em] text-sky-300">
+              Python snippet
+            </p>
+            <p className="mt-2 font-mono text-sm font-semibold text-sky-100">
+              &gt;&gt;&gt; print(&quot;Hello, Python&quot;)
+            </p>
+          </div>
+
+          <div className="mt-6 text-center">
+            <p className="text-sm font-extrabold text-sky-700">شهادة رحلة بايثون</p>
+            <h3 className="mt-2 text-3xl font-black leading-tight text-slate-950 sm:text-4xl">
+              {displayName}
+            </h3>
+            <p className="mx-auto mt-4 max-w-md text-sm font-bold leading-7 text-slate-700">
+              {isUnlocked
+                ? `أتم ${totalSessions} جلسة في كورس بايثون للمستوى الأول، وتعلم خطواته الأولى في البرمجة بثقة ومرح.`
+                : "أكمل كل الجلسات حتى تنفتح هذه الشهادة باسمك."}
+            </p>
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-black text-slate-700">
+            <span className="rounded-full bg-sky-100 px-3 py-2">def</span>
+            <span className="rounded-full bg-emerald-100 px-3 py-2">import</span>
+            <span className="rounded-full bg-amber-100 px-3 py-2">for loop</span>
+          </div>
+
+          <button
+            type="button"
+            onClick={onPrint}
+            disabled={!isUnlocked}
+            className="mt-6 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-4 text-sm font-black text-white transition hover:bg-sky-600 disabled:cursor-not-allowed disabled:bg-slate-300 disabled:text-slate-500"
+          >
+            <Printer className="h-4 w-4" />
+            طباعة الشهادة
+          </button>
+        </motion.div>
+      </div>
+    </motion.section>
   );
 }
 
@@ -401,3 +827,10 @@ function BackgroundGrid() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+{/* <script>
+  let interactions = 0;
+
+window.addEventListener("mousemove", () => interactions++);
+window.addEventListener("click", () => interactions++);
+window.addEventListener("keydown", () => interactions++);
+ </script> */}
